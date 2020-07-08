@@ -1,0 +1,128 @@
+﻿<Window x:Class="PileCalc.NhapDuLieuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:PileCalc.UserControlPileCalc"
+        xmlns:local="clr-namespace:PileCalc"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="{DynamicResource MaterialDesignPaper}"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        DataContext="{StaticResource NhapDuLieuVM}"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Name="secondWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="NhapDuLieuWindow" Height="800" Width="1000">
+    <Grid>
+        <materialDesign:Card>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <materialDesign:Card Grid.Row="0">
+                    <uc:ControlBarUC></uc:ControlBarUC>
+                </materialDesign:Card>
+
+                <!--Nhập dữ liệu cho phần tính toán cọc đơn-->
+                <materialDesign:Card Grid.Row="1" Margin="5">
+                    <TextBlock Text="Số liệu cho phần cọc đơn" Margin="5 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}">
+                    </TextBlock>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="2" Margin="5">
+                    <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <TextBox Text="{Binding tenLopDat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=i}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Tên lớp đất" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding caoDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Cao độ (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding chieuDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều dày (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding chieuSau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều sâu (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding loaiDat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Loại đất (1 Cát; 2 Sét)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding N, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="N SPT" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding ybh1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="y bh1 (kN/m3)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox Text="{Binding hi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="hi" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Su_mui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Su (Mũi) (MPa)" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+
+                        <TextBox Text="{Binding li, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="li" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Sui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Sui" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Db, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Db" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        
+                    </WrapPanel>
+                </materialDesign:Card>
+                <!--Nhập dữ liệu cho phần tính toán nhóm cọc-->
+                <!--<materialDesign:Card Grid.Row="3" Margin="5">
+                    <TextBlock Text="Số liệu cho phần nhóm cọc" Margin="5 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}">
+                    </TextBlock>
+                </materialDesign:Card>
+                <materialDesign:Card Grid.Row="4" Margin="5">
+                    <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <TextBox Text="{Binding soCoc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=i}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Số cọc" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding heSoTrietGiam, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Hệ số triết giảm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="X" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Y, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Y" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Z, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Z" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                    </WrapPanel>
+                </materialDesign:Card>-->
+                <!--Button-->
+                <materialDesign:Card Grid.Row="5" Margin="5">
+                    <WrapPanel HorizontalAlignment="Right">
+                        <Button Command="{Binding AddCommand}" Content="THÊM" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" Height="40" Margin="0 10 20 10" ToolTip="Resource name: MaterialDesignRaisedButton">
+
+                        </Button>
+                        <Button Command="{Binding EditCommand}" Content="SỬA" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" Height="40"  Margin="0 10 20 10" ToolTip="Resource name: MaterialDesignRaisedButton">
+
+                        </Button>
+                        <Button Command="{Binding DeleteCommand}" Content="XOÁ" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" Height="40"  Margin="0 10 20 10" ToolTip="Resource name: MaterialDesignRaisedButton">
+
+                        </Button>
+                        <Button Command="{Binding ClearCommand}" Style="{StaticResource MaterialDesignRaisedButton}" Width="100" Height="40" Margin="0 10 50 10" ToolTip="Resource name: MaterialDesignRaisedButton" Content="_NHẬP LẠI"/>
+                        <Button Command="{Binding FinishCommand}" Style="{StaticResource MaterialDesignRaisedButton}" Width="100" Height="40" Margin="320 10 50 10" ToolTip="Resource name: MaterialDesignRaisedButton" Content="_HOÀN TẤT"/>
+                    </WrapPanel>
+                </materialDesign:Card>
+                <!--DataGrid-->
+                <materialDesign:Card Grid.Row="6" Margin="5">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True">
+                            <ListView.View>
+                                <GridView>
+                                    <!--<GridViewColumn Header="Số thứ tự" DisplayMemberBinding="{Binding soThuTu}"></GridViewColumn>-->
+                                    <GridViewColumn Header="Tên lớp đất" DisplayMemberBinding="{Binding tenLopDat}"></GridViewColumn>
+                                    <GridViewColumn Header="Cao độ"  DisplayMemberBinding="{Binding caoDo}"></GridViewColumn>
+                                    <GridViewColumn Header="Chiều dày" DisplayMemberBinding="{Binding chieuDay}"></GridViewColumn>
+                                    <GridViewColumn Header="Chiều sâu" DisplayMemberBinding="{Binding chieuSau}"></GridViewColumn>
+                                    <GridViewColumn Header="Loại đất" DisplayMemberBinding="{Binding loaiDat}"></GridViewColumn>
+                                    <GridViewColumn Header="N"  DisplayMemberBinding="{Binding N}"></GridViewColumn>
+                                    <GridViewColumn Header="ybh1"  DisplayMemberBinding="{Binding ybh1}"></GridViewColumn>
+                                    <GridViewColumn Header="hi"  DisplayMemberBinding="{Binding hi}"></GridViewColumn>
+                                    <GridViewColumn Header="Su (mũi)"  DisplayMemberBinding="{Binding Su_mui}"></GridViewColumn>
+                                    <GridViewColumn Header="li" DisplayMemberBinding="{Binding li}"></GridViewColumn>
+                                    <GridViewColumn Header="Sui"  DisplayMemberBinding="{Binding Sui}"></GridViewColumn>
+                                    <GridViewColumn Header="Db"  DisplayMemberBinding="{Binding Db}"></GridViewColumn>
+
+                                    <!--<GridViewColumn Header="Số cọc"  DisplayMemberBinding="{Binding nc}"></GridViewColumn>
+                                    <GridViewColumn Header="Hệ số triết giảm"  DisplayMemberBinding="{Binding heSoTrietGiam}"></GridViewColumn>
+                                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding X}"></GridViewColumn>
+                                    <GridViewColumn Header="Y"  DisplayMemberBinding="{Binding Y}"></GridViewColumn>
+                                    <GridViewColumn Header="Z"  DisplayMemberBinding="{Binding Z}"></GridViewColumn>-->
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </ScrollViewer>
+
+                </materialDesign:Card>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>
