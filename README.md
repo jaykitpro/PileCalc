@@ -26,7 +26,9 @@ Lớp: CQ.58.CNTT
 ##Hướng dẫn sử dụng
 
   B1: Nhập thông tin ban đầu của dự án ở menu Số liệu ban đầu, sau đó nhấn lưu và đóng cửa sổ Số liệu ban đầu.
+  
   B2: Thực hiện thêm dữ liệu đã thu thập vào cửa sổ Nhập dữ liệu, sau khi nhập xong nhấn hoàn tất và đóng cửa sổ Nhập dữ liệu.
+  
   B3: Mở cửa sổ Kết quả tính toán để xem kết quả đã tính toán.
   
 Xin cảm ơn!
