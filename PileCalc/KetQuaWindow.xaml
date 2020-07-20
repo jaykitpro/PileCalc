@@ -36,97 +36,42 @@
                 KẾT QUẢ TÍNH TOÁN SỨC CHỊU TẢI CỦA CỌC THEO TCVN 11823 - 2017
             </TextBlock>
         </materialDesign:Card>
-        <materialDesign:Card Grid.Row="2" Margin="5">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition Width="120"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5"  Text="Tên hố khoan:"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="Tên hạng mục:"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2" Margin="5" Text="Tên dự án:"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding TenHoKhoan}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding TenHangMuc}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding TenDuAn}"></TextBlock>
-
-                <TextBlock Grid.Column="2" Grid.Row="0" Margin="5" Text="Chủ nhiệm đề án:"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="1" Margin="5" Text="Người kiểm tra:"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="2" Margin="5" Text="Người thực hiện:"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="0" Margin="5" Text="{Binding CNDA}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="1" Margin="5" Text="{Binding NguoiKiemTra}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="2" Margin="5" Text="{Binding NguoiThucHien}"></TextBlock>
-            </Grid>
-        </materialDesign:Card>
+        <!--<materialDesign:Card Grid.Row="2" Margin="5">
+            <Button Command="{Binding PrintCommand}" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignRaisedButton}" Width="121" Height="40" Margin="0,10,29,10" ToolTip="Resource name: MaterialDesignRaisedButton" Content="IN KẾT QUẢ"/>
+        </materialDesign:Card>-->
         <materialDesign:Card Grid.Row="3" Margin="5">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Column="0" Grid.Row="0" Margin="5" Text="Đường kính cọc (mm):"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="1" Margin="5" Text="Khối lượng riêng bê tông (T/m3):"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="2" Margin="5" Text="Loại đất nền dưới mũi cọc: "></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="3" Margin="5" Text="Khoảng cách từ đáy bệ đến mặt đất tự nhiên (m):"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="4" Margin="5" Text="Chiều sâu cọc xuyên vào tầng cát ở mũi:"></TextBlock>
-                <TextBlock Grid.Column="0" Grid.Row="5" Margin="5" Text="N mũi"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="0" Margin="5" Text="{Binding DuongKinhCoc}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding KhoiLuongRiengBeTong}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="2" Margin="5" Text="{Binding LoaiDatNenDuoiMuiCoc}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="3" Margin="5" Text="{Binding KhoangCachMatDatTuNhien}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="4" Margin="5" Text="{Binding ChieuSauCocXuyen}"></TextBlock>
-                <TextBlock Grid.Column="1" Grid.Row="5" Margin="5" Text="{Binding Nmui}"></TextBlock>
-
-                <TextBlock Grid.Column="2" Grid.Row="0" Margin="5" Text="Hệ số sức kháng" Style="{StaticResource MaterialDesignSubtitle1TextBlock}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="1" Margin="5"  Text="Hệ số nhóm cọc" Style="{StaticResource MaterialDesignSubtitle2TextBlock}"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="2" Margin="15 5 0 5" Text="Khoảng cách giữa tim hai cọc (m):"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="3" Margin="15 5 0 5" Text="Hệ số nhóm cọc đất cát:"></TextBlock>
-                <TextBlock Grid.Column="2" Grid.Row="4" Margin="15 5 0 5" Text="Hệ số nhóm cọc đất sét: "></TextBlock>
-                
-                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding khoangCachTimHaiCoc}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="3" Text="{Binding heSoNhomCocDatCat}"></TextBlock>
-                <TextBlock Grid.Column="3" Grid.Row="4" Text="{Binding heSoNhomCocDatSet}"></TextBlock>
-            </Grid>
-        </materialDesign:Card>
-        <materialDesign:Card Grid.Row="4" Margin="5">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <ListView ItemsSource="{Binding List}" IsSynchronizedWithCurrentItem="True">
+                <ListView Name="lv_Test" ItemsSource="{Binding ListResult, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Tên lớp đất" DisplayMemberBinding="{Binding tenLopDat}"></GridViewColumn>
-                            <GridViewColumn Header="Cao độ"  DisplayMemberBinding="{Binding caoDo}"></GridViewColumn>
-                            <GridViewColumn Header="Chiều dày" DisplayMemberBinding="{Binding chieuDay}"></GridViewColumn>
-                            <GridViewColumn Header="Chiều sâu" DisplayMemberBinding="{Binding chieuSau}"></GridViewColumn>
-                            <GridViewColumn Header="Loại đất" DisplayMemberBinding="{Binding loaiDat}"></GridViewColumn>
-                            <GridViewColumn Header="N"  DisplayMemberBinding="{Binding N}"></GridViewColumn>
-                            <GridViewColumn Header="ybh1"  DisplayMemberBinding="{Binding ybh1}"></GridViewColumn>
-                            <GridViewColumn Header="hi"  DisplayMemberBinding="{Binding hi}"></GridViewColumn>
-                            <GridViewColumn Header="Su (mũi)"  DisplayMemberBinding="{Binding Su_mui}"></GridViewColumn>
-                            <GridViewColumn Header="li" DisplayMemberBinding="{Binding li}"></GridViewColumn>
-                            <GridViewColumn Header="Sui"  DisplayMemberBinding="{Binding Sui}"></GridViewColumn>
-                            <GridViewColumn Header="Db"  DisplayMemberBinding="{Binding Db}"></GridViewColumn>
-                            <GridViewColumn Header="Hệ số triết giảm"  DisplayMemberBinding="{Binding heSoTrietGiam}"></GridViewColumn>
-                            <GridViewColumn Header="X" DisplayMemberBinding="{Binding X}"></GridViewColumn>
-                            <GridViewColumn Header="Y"  DisplayMemberBinding="{Binding Y}"></GridViewColumn>
-                            <GridViewColumn Header="Z"  DisplayMemberBinding="{Binding Z}"></GridViewColumn>
-
+                            <GridViewColumn Header="Tên lớp đất" DisplayMemberBinding="{Binding tenLopDat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Cao độ"  DisplayMemberBinding="{Binding caoDo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Chiều dày" DisplayMemberBinding="{Binding chieuDay, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Chiều sâu" DisplayMemberBinding="{Binding chieuSau, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Loại đất" DisplayMemberBinding="{Binding loaiDat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="N"  DisplayMemberBinding="{Binding N, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="ybh1"  DisplayMemberBinding="{Binding ybh1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="hi"  DisplayMemberBinding="{Binding hi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Su (mũi)"  DisplayMemberBinding="{Binding Su_mui, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="li" DisplayMemberBinding="{Binding li, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Db"  DisplayMemberBinding="{Binding Db, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Sui" DisplayMemberBinding="{Binding Sui, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="ai" DisplayMemberBinding="{Binding ai, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="ov" DisplayMemberBinding="{Binding ov, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Asi" DisplayMemberBinding="{Binding Asi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="CN" DisplayMemberBinding="{Binding CN, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="qp" DisplayMemberBinding="{Binding qp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="ql" DisplayMemberBinding="{Binding ql, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="qsi" DisplayMemberBinding="{Binding qsi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Ap" DisplayMemberBinding="{Binding Ap, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="N1_60" DisplayMemberBinding="{Binding N1_60, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="N1_60 mũi" DisplayMemberBinding="{Binding N1_60mui, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="QP" DisplayMemberBinding="{Binding C_Qp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="Qsi" DisplayMemberBinding="{Binding C_Qsi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="phiqpQp" DisplayMemberBinding="{Binding phiqpQp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="phiqsQsi" DisplayMemberBinding="{Binding phiqsQsi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="SumphiqsQsi" DisplayMemberBinding="{Binding SumphiqsQsi, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
+                            <GridViewColumn Header="QR" DisplayMemberBinding="{Binding QR, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

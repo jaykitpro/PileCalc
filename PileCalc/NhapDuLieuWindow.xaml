@@ -38,43 +38,29 @@
 
                 <!--Nhập dữ liệu cho phần tính toán cọc đơn-->
                 <materialDesign:Card Grid.Row="1" Margin="5">
-                    <TextBlock Text="Số liệu cho phần cọc đơn" Margin="5 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}">
+                    <TextBlock Text="Số liệu cho phần cọc đơn (* nhập 0 cho giá trị không xét)" Margin="5 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}">
                     </TextBlock>
                 </materialDesign:Card>
                 <materialDesign:Card Grid.Row="2" Margin="5">
                     <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <TextBox Text="{Binding tenLopDat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=i}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Tên lớp đất" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding caoDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Cao độ (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding chieuDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều dày (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding chieuSau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều sâu (m)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding loaiDat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Loại đất (1 Cát; 2 Sét)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding N, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="N SPT" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding ybh1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="y bh1 (kN/m3)" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding tenLopDat, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=i}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Tên lớp đất" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding caoDo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Cao độ (m)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding chieuDay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều dày (m)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding chieuSau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Chiều sâu (m)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding loaiDat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Loại đất (1 Cát; 2 Sét)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding N, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="N SPT" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding ybh1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="y bh1 (kN/m3)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-                        <TextBox Text="{Binding hi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="hi" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding Su_mui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Su (Mũi) (MPa)" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding hi, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="hi (m)" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Su_mui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Su (Mũi) (MPa)" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-                        <TextBox Text="{Binding li, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="li" FontSize="17" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding Sui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Sui" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding Db, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Db" FontSize="17"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding li, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="li (m)" FontSize="15" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Sui, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Sui" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        <TextBox Text="{Binding Db, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 12 3" materialDesign:HintAssist.Hint="Db" FontSize="15"  Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
                         
                     </WrapPanel>
                 </materialDesign:Card>
-                <!--Nhập dữ liệu cho phần tính toán nhóm cọc-->
-                <!--<materialDesign:Card Grid.Row="3" Margin="5">
-                    <TextBlock Text="Số liệu cho phần nhóm cọc" Margin="5 0 0 0" Style="{StaticResource MaterialDesignBody1TextBlock}">
-                    </TextBlock>
-                </materialDesign:Card>
-                <materialDesign:Card Grid.Row="4" Margin="5">
-                    <WrapPanel HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <TextBox Text="{Binding soCoc, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=i}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Số cọc" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding heSoTrietGiam, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Hệ số triết giảm" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding X, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="X" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding Y, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Y" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                        <TextBox Text="{Binding Z, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="10 0 12 3" materialDesign:HintAssist.Hint="Z" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
-                    </WrapPanel>
-                </materialDesign:Card>-->
-                <!--Button-->
+               
                 <materialDesign:Card Grid.Row="5" Margin="5">
                     <WrapPanel HorizontalAlignment="Right">
                         <Button Command="{Binding AddCommand}" Content="THÊM" Style="{StaticResource MaterialDesignRaisedDarkButton}" Width="100" Height="40" Margin="0 10 20 10" ToolTip="Resource name: MaterialDesignRaisedButton">
@@ -93,10 +79,10 @@
                 <!--DataGrid-->
                 <materialDesign:Card Grid.Row="6" Margin="5">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" IsSynchronizedWithCurrentItem="True">
+                        <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsSynchronizedWithCurrentItem="True">
                             <ListView.View>
                                 <GridView>
-                                    <!--<GridViewColumn Header="Số thứ tự" DisplayMemberBinding="{Binding soThuTu}"></GridViewColumn>-->
+                                   
                                     <GridViewColumn Header="Tên lớp đất" DisplayMemberBinding="{Binding tenLopDat}"></GridViewColumn>
                                     <GridViewColumn Header="Cao độ"  DisplayMemberBinding="{Binding caoDo}"></GridViewColumn>
                                     <GridViewColumn Header="Chiều dày" DisplayMemberBinding="{Binding chieuDay}"></GridViewColumn>
@@ -109,13 +95,7 @@
                                     <GridViewColumn Header="li" DisplayMemberBinding="{Binding li}"></GridViewColumn>
                                     <GridViewColumn Header="Sui"  DisplayMemberBinding="{Binding Sui}"></GridViewColumn>
                                     <GridViewColumn Header="Db"  DisplayMemberBinding="{Binding Db}"></GridViewColumn>
-
-                                    <!--<GridViewColumn Header="Số cọc"  DisplayMemberBinding="{Binding nc}"></GridViewColumn>
-                                    <GridViewColumn Header="Hệ số triết giảm"  DisplayMemberBinding="{Binding heSoTrietGiam}"></GridViewColumn>
-                                    <GridViewColumn Header="X" DisplayMemberBinding="{Binding X}"></GridViewColumn>
-                                    <GridViewColumn Header="Y"  DisplayMemberBinding="{Binding Y}"></GridViewColumn>
-                                    <GridViewColumn Header="Z"  DisplayMemberBinding="{Binding Z}"></GridViewColumn>-->
-
+                                   
                                 </GridView>
                             </ListView.View>
                         </ListView>

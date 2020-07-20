@@ -53,12 +53,6 @@ namespace PileCalc.ViewModel
                     Su_mui = SelectedItem.Su_mui.ToString();
                     Sui = SelectedItem.Sui.ToString();
                     Db = SelectedItem.Db.ToString();
-                    //soCoc = SelectedItem.nc.ToString();
-                    //heSoTrietGiam = SelectedItem.heSoTrietGiam.ToString();
-                    //X = SelectedItem.X.ToString();
-                    //Y = SelectedItem.Y.ToString();
-                    //Z = SelectedItem.Z.ToString();
-                    
                 }
             }
         }
@@ -101,27 +95,16 @@ namespace PileCalc.ViewModel
         private string _Db;
         public string Db { get => _Db; set { _Db = value; OnPropertyChanged(); } }
 
-        private string _soCoc;
-        public string soCoc { get => _soCoc; set { _soCoc = value; OnPropertyChanged(); } }
-
-        private string _heSoTrietGiam;
-        public string heSoTrietGiam { get => _heSoTrietGiam; set { _heSoTrietGiam = value; OnPropertyChanged(); } }
-
-        private string _X;
-        public string X{ get => _X; set { _X = value; OnPropertyChanged(); } }
-
-        private string _Y;
-        public string Y { get => _Y; set { _Y = value; OnPropertyChanged(); } }
-
-        private string _Z;
-        public string Z { get => _Z; set { _Z = value; OnPropertyChanged(); } }
+       
         #endregion
 
         public NhapDuLieuViewModel()
         {
             int count = 1;
-            
-            List = new ObservableCollection<DuLieu>(DataProvider.Ins.DB.DuLieux);
+
+            var data = new PileCalcPlusEntities();
+
+            List = new ObservableCollection<DuLieu>(data.DuLieux);
 
             AddCommand = new RelayCommand<object>((p) =>
             {
@@ -216,11 +199,7 @@ namespace PileCalc.ViewModel
                         Su_mui = Math.Round(float.Parse(Su_mui.ToString()), 3),
                         Sui = Math.Round(float.Parse(Sui.ToString()), 3),
                         Db = float.Parse(Db.ToString())
-                        //nc = int.Parse(soCoc.ToString()),
-                        //heSoTrietGiam = float.Parse(heSoTrietGiam.ToString()),
-                        //X = float.Parse(X.ToString()),
-                        //Y = float.Parse(Y.ToString()),
-                        //Z = float.Parse(Z.ToString())
+                        
                        
                     };
                     DataProvider.Ins.DB.DuLieux.Add(dulieu);
@@ -254,20 +233,14 @@ namespace PileCalc.ViewModel
                 Dulieu.loaiDat = int.Parse(loaiDat.ToString());
                 Dulieu.N = int.Parse(N.ToString());
                 Dulieu.ybh1 = float.Parse(ybh1.ToString());
-                Dulieu.hi = float.Parse(hi.ToString());
-                Dulieu.Su_mui = float.Parse(Su_mui.ToString());
-                Dulieu.li = float.Parse(li.ToString());
-                Dulieu.Sui = float.Parse(Sui.ToString());
+                Dulieu.hi = Math.Round(float.Parse(hi.ToString()), 2);
+                Dulieu.Su_mui = Math.Round(float.Parse(Su_mui.ToString()), 2);
+                Dulieu.li = Math.Round(float.Parse(li.ToString()), 2);
+                Dulieu.Sui = Math.Round(float.Parse(Sui.ToString()), 2);
                 Dulieu.Db = float.Parse(Db.ToString());
-                //Dulieu.nc = int.Parse(soCoc.ToString());
-                //Dulieu.heSoTrietGiam = float.Parse(heSoTrietGiam.ToString());
-                //Dulieu.X = float.Parse(X.ToString());
-                //Dulieu.Y = float.Parse(Y.ToString());
-                //Dulieu.Z = float.Parse(Z.ToString());
+                
 
                 DataProvider.Ins.DB.SaveChanges();
-
-
             });
 
             ClearCommand = new RelayCommand<object>((c) =>
@@ -301,101 +274,9 @@ namespace PileCalc.ViewModel
             FinishCommand = new RelayCommand<object>((f) => { return true; },
                 (f) =>
                 {
-                    #region Công sức tính sức chịu tải cọc đơn
-                    //Xử lý số liệu diện tích mũi cọc
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE SoLieuBanDau SET dienTichMuiCoc = beRongCoc * beRongCoc");
+                    Calc();                           
+                    MessageBox.Show("Tính toán kết quả thành công!");
 
-                    //Xử lý số liệu Ap
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Ap = (SELECT dienTichMuiCoc FROM SoLieuBanDau)");
-                    
-                    //Xử lý số liệu o'v
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET temp_Sumov = (9.81 * (ybh1 - 1000) * hi * 1000 * 0.000000001)");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXEC Sumov");
-
-                    //Xử lý số liệu Cn
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET CN = 0.77 * LOG10(1.92 / ov)");
-
-                    //Xử lý số liệu N1_60 mũi
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET N1_60mui = CN * (SELECT Nmui FROM SoLieuBanDau)");
-
-                    //Xử lý số liệu ql
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ql = 0.4 * N1_60mui");
-
-                    //Xử lý số liệu qp
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = (9 * Su_mui) WHERE loaiDat = 2");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = ((0.038 * N1_60mui * Db * 1000) / (SELECT beRongCoc FROM SoLieuBanDau)) WHERE loaiDat = 1 "); 
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = ql WHERE qp > ql AND loaiDat = 1 ");
-
-                    //Xử lý số liệu Qp
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET _Qp = qp * Ap");
-
-                    //Xử lý số liệu alpha theo Sui
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 1 WHERE Sui < 0.025");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 1 - 0.5 * ((Sui - 0.025)/0.05) WHERE Sui > 0.025 AND Sui < 0.075");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 0.5 WHERE Sui > 0.075");
-
-                    //Xử lý N ()
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET N1_60 = CN * N");
-
-                    //Xử lý số liệu qsi
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qsi = 0.0019 * N1_60 WHERE loaiDat = 1");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qsi = ai * Sui WHERE loaiDat = 2");
-
-                    //Xử lý số liệu Asi
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Asi = 4 * (SELECT beRongCoc FROM SoLieuBanDau) * li * 1000");
-
-                    //Xử lý số liệu Qsi
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET _Qsi = qsi * Asi");
-
-                    //Xử lý số liệu phiqsQsi và tổng phiqsQsi
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqsQsi = 0.3 * _Qsi WHERE loaiDat = 1");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqsQsi = 0.35 * _Qsi WHERE loaiDat = 2");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXECUTE SumphiqsQsi");
-
-                    //Xử lý số liệu phiqpQp
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqpQp = 0.3 * _Qp WHERE loaiDat = 1");
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqpQp = 0.35 * _Qp WHERE loaiDat = 2");
-
-                    //Xử lý số liệu QR của cọc đơn
-                    DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET QR = phiqpQp + SumphiqsQsi");
-                    #endregion
-
-                    #region Công thức tính sức chịu tải nhóm cọc
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXEC SumSui");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXEC SumQsi");
-
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Qn = Qp + SumQsi");
-
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Nc = 5 * (1 + 0.2 * X/Y) * (1 + 0.2 * Z/Y) WHERE Z/X <= 2.5");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Nc = 7.5 *  (1 + 0.2 * X/Y) WHERE Z/X >= 2.5");
-
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Qgn1 = nc * heSoTrietGiam * Qn");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Qgn2 = Z*(X + Y) * SumSui * hi + X * Y * Nc * Su_mui");
-
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Qgn = Qgn1 WHERE Qgn1 < Qgn2");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Qgn = Qgn2 WHERE Qgn2 < Qgn1");
-
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET QgR = nc * QR WHERE loaiDat = 1");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET QgR = 0.6 * Qgn WHERE loaiDat = 2");
-                    #endregion
-                    #region Xử lý làm tròn số
-                    //Round number
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET qs = ROUND(qs, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Ncoor = ROUND(Ncoor, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET qp = ROUND(qp, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET QsSKIN = ROUND(QsSKIN, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET phiqsQs = ROUND(phiqsQs, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET nphiqsQs = ROUND(nphiqsQs, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET SumQs = ROUND(SumQs, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Sumphiqs = ROUND(Sumphiqs, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET QpTip = ROUND(QpTip, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET phiqpQp = ROUND(phiqpQp, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Qult = ROUND(Qult, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET QR = ROUND(QR, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET W = ROUND(W, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Q = ROUND(Q, 2)");
-                    //DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET ql = ROUND(ql, 2)");
-                    #endregion
                 });
         }
         public void ClearContentNDL()
@@ -411,18 +292,99 @@ namespace PileCalc.ViewModel
             Su_mui = "";
             li = "";
             Sui = "";
-            Db = "";
-            //soCoc = "";
-            //heSoTrietGiam = "";
-            //X = "";
-            //Y = "";
-            //Z = "";
-            
+            Db = "";            
         }
         public bool IsNumber(string pText)
         {
             Regex regex = new Regex(@"^[-+]?[0-9]*\.?[0-9]+$");
             return regex.IsMatch(pText);
+        }
+        private void Calc()
+        {
+            #region Công sức tính sức chịu tải cọc đơn
+            //Xử lý số liệu diện tích mũi cọc
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE SoLieuBanDau SET dienTichMuiCoc = beRongCoc * beRongCoc");
+
+            //Xử lý số liệu Ap
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Ap = (SELECT dienTichMuiCoc FROM SoLieuBanDau)");
+
+            
+
+            //Xử lý số liệu o'v
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET temp_Sumov = (9.81 * (ybh1 - 1000) * hi/2 * 1000 * 0.000000001) WHERE loaiDat = 1");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET temp_Sumov = (9.81 * (ybh1 - 1000) * hi * 1000 * 0.000000001) WHERE loaiDat = 2");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXEC Sumov");
+
+            //Xử lý số liệu Cn
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET CN = 0.77 * LOG10(1.92 / ov)");
+
+            //Xử lý số liệu N1_60 mũi
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET N1_60mui = CN * (SELECT Nmui FROM SoLieuBanDau)");
+
+            //Xử lý số liệu ql
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ql = 0.4 * N1_60mui");
+
+            //Xử lý số liệu qp
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = (9 * Su_mui) WHERE loaiDat = 2");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = ((0.038 * N1_60mui * Db * 1000) / (SELECT beRongCoc FROM SoLieuBanDau)) WHERE loaiDat = 1 ");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qp = ql WHERE qp > ql AND loaiDat = 1 ");
+
+            //Xử lý số liệu Qp
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET _Qp = qp * Ap");
+
+            //Xử lý số liệu alpha theo Sui
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 1 WHERE Sui < 0.025");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 1 - 0.5 * ((Sui - 0.025)/0.05) WHERE Sui > 0.025 AND Sui < 0.075");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET ai = 0.5 WHERE Sui > 0.075");
+
+            //Xử lý N ()
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET N1_60 = CN * N");
+
+            //Xử lý số liệu qsi
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qsi = 0.0019 * N1_60 WHERE loaiDat = 1");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET qsi = ai * Sui WHERE loaiDat = 2");
+
+            //Xử lý số liệu Asi
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET Asi = 4 * (SELECT beRongCoc FROM SoLieuBanDau) * li * 1000");
+
+            //Xử lý số liệu Qsi
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET _Qsi = qsi * Asi");
+
+            //Xử lý số liệu phiqsQsi và tổng phiqsQsi
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqsQsi = 0.3 * _Qsi WHERE loaiDat = 1");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqsQsi = 0.35 * _Qsi WHERE loaiDat = 2");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("EXECUTE SumphiqsQsi");
+
+            //Xử lý số liệu phiqpQp
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqpQp = 0.3 * _Qp WHERE loaiDat = 1");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET phiqpQp = 0.35 * _Qp WHERE loaiDat = 2");
+
+            //Xử lý số liệu QR của cọc đơn
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE Dulieu SET QR = phiqpQp + SumphiqsQsi");
+            #endregion
+
+
+            #region Xử lý làm tròn số
+            //Round number
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Sui = ROUND(Sui, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET ai = ROUND(ai, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET temp_Sumov = ROUND(temp_Sumov, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET ov = ROUND(ov, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Asi = ROUND(Asi, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET CN = ROUND(CN, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET qp = ROUND(qp, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET ql = ROUND(ql, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET qsi = ROUND(qsi, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET Ap = ROUND(Ap, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET N1_60 = ROUND(N1_60, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET N1_60mui = ROUND(N1_60mui, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET _Qp = ROUND(_Qp, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET _Qsi = ROUND(_Qsi, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET phiqpQp = ROUND(phiqpQp, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET phiqsQsi = ROUND(phiqsQsi, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET SumphiqsQsi = ROUND(SumphiqsQsi, 3)");
+            DataProvider.Ins.DB.Database.ExecuteSqlCommand("UPDATE DuLieu SET QR = ROUND(QR, 3)");
+            #endregion
         }
     }
 }

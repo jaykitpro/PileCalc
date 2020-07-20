@@ -68,7 +68,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <TextBlock Text="Nhập số liệu ban đầu" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline6TextBlock}"></TextBlock>
+                                    <TextBlock Text="Nhập số liệu ban đầu" FontSize="16" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignButtonTextBlock}"></TextBlock>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24"  Kind="InformationOutline" />
@@ -83,7 +83,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <TextBlock Text="Nhập dữ liệu" HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignHeadline6TextBlock}"></TextBlock>
+                                    <TextBlock Text="Nhập dữ liệu" FontSize="16" HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignButtonTextBlock}"></TextBlock>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24"  Kind="Database" />
@@ -99,7 +99,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <TextBlock Text="Kết quả tính toán" HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignHeadline6TextBlock}"></TextBlock>
+                                    <TextBlock Text="Kết quả tính toán" FontSize="16"  HorizontalAlignment="Center"  Style="{StaticResource MaterialDesignButtonTextBlock}"></TextBlock>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <materialDesign:PackIcon HorizontalAlignment="Center" Width="24" Height="24"  Kind="Calculator" />
@@ -120,26 +120,29 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <materialDesign:Card Grid.Row="0" Grid.Column="0" Margin="5">
-                            <Image HorizontalAlignment="Center" Source="/img/utc2.png" Height="292" Margin="10,10,0,0" VerticalAlignment="Top" Width="475"/>
+                            <Image HorizontalAlignment="Center" Source="/img/utc2.png" Height="292" VerticalAlignment="Top" Width="475"/>
                         </materialDesign:Card>
                         <materialDesign:Card Grid.Column="0" Grid.Row="1" Margin="5">
-                            <GroupBox Header="Thông tin phần mềm" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16"
+                            <GroupBox Header="Thông tin phần mềm" FontSize="16" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                     BorderThickness="0">
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="6,6,6,6" Text="Phần mềm tính toán sức chịu tải của cọc là sản phẩm tham gia để tài nghiên khoa học cấp trường.
-                                                                    Sản phẩm này được tạo ra với mục đích có thể giúp cho các kỹ sư xây dựng có thể tiết kiệm thời gian và công sức hơn trong công việc tính toán của mình." TextWrapping="Wrap">
+                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Margin="6,6,6,6" Text="Phần mềm tính toán sức chịu tải của cọc là một sản phẩm giúp tính toán nhanh chóng tính toán sức chịu tải của cọc.
+                                                                    Sản phẩm hiện đã hoàn thiện một phần và có thể ứng dụng trong tính sức chịu tải của cọc vuông đơn. Trong tương lai nhóm sẽ phát triển để có thể tính toán được độ chịu tải trong tất cả các trường hợp." TextWrapping="Wrap">
                                     
                                 </TextBlock>
                             </GroupBox>
                         </materialDesign:Card>
                         <materialDesign:Card Grid.Row="0" Grid.Column="1" Margin="5">
-                            <Image HorizontalAlignment="Center" Source="/img/it.png" Height="292" Margin="10,10,0,0" VerticalAlignment="Top" Width="475"/>
+                            <Image HorizontalAlignment="Center" Source="/img/it.png" Height="292" VerticalAlignment="Top" Width="475"/>
                         </materialDesign:Card>
                         <materialDesign:Card Grid.Column="1" Grid.Row="1" Margin="5">
-                            <GroupBox Header="Tác giả" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16"
+                            <GroupBox Header="Tác giả" FontSize="16" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16"
                                     materialDesign:ShadowAssist.ShadowDepth="Depth3"
                                     BorderThickness="0">
-                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Thực hiện bởi: Dương Hùng Kiệt                                                                     Hỗ trợ: Phan Văn Hy                                                                                                                                                                                         Người hướng dẫn: ThS. Nguyễn Lê Minh" Margin="6,6,6,6" TextWrapping="Wrap">
+                                <TextBlock Style="{StaticResource MaterialDesignHeadline6TextBlock}" Text="Sản phẩm thuộc quyền sở hữu của Bộ môn Công nghệ thông tin.
+                                                                                                                      ______________________________________________
+                                           Thực hiện bởi: Dương Hùng Kiệt
+                                           Người hướng dẫn: ThS. Nguyễn Lê Minh" Margin="6,6,6,6" TextWrapping="Wrap">
                                     
                                 </TextBlock>
                             </GroupBox>

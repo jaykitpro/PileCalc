@@ -25,7 +25,7 @@ namespace PileCalc.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<SoLieuBanDau> SoLieuBanDaus { get; set; }
         public virtual DbSet<DuLieu> DuLieux { get; set; }
+        public virtual DbSet<SoLieuBanDau> SoLieuBanDaus { get; set; }
     }
 }

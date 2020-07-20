@@ -20,7 +20,7 @@ namespace PileCalc.Model
             this.DuLieux = new HashSet<DuLieu>();
         }
     
-        public string tenKetCau { get; set; }
+        public string tenHoKhoan { get; set; }
         public string tenHangMuc { get; set; }
         public string tenDuAn { get; set; }
         public string CNDA { get; set; }
@@ -28,14 +28,13 @@ namespace PileCalc.Model
         public string nguoiThucHien { get; set; }
         public int beRongCoc { get; set; }
         public int dienTichMuiCoc { get; set; }
-        public double khoiLuongRiengBeTong { get; set; }
         public int loaiDatNen { get; set; }
         public double khoangCachMatDatTuNhien { get; set; }
         public double chieuSauCocXuyen { get; set; }
         public int Nmui { get; set; }
-        public double khoangCachGiuaTimHaiCoc { get; set; }
-        public double heSoNhomCocCat { get; set; }
-        public double heSoNhomCocSet { get; set; }
+        public double caoDoMatDat { get; set; }
+        public double mucNuocNgam { get; set; }
+        public double chieuDaiCoc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DuLieu> DuLieux { get; set; }

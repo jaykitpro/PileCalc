@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PileCalc.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace PileCalc
         public KetQuaWindow()
         {
             InitializeComponent();
+            DataContext = new KetQuaViewModel();
+            
         }
     }
 }

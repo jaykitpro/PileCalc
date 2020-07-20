@@ -43,9 +43,9 @@
         </EntityType>
         <EntityType Name="SoLieuBanDau">
           <Key>
-            <PropertyRef Name="tenKetCau" />
+            <PropertyRef Name="tenHoKhoan" />
           </Key>
-          <Property Name="tenKetCau" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="tenHoKhoan" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="tenHangMuc" Type="nvarchar(max)" Nullable="false" />
           <Property Name="tenDuAn" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CNDA" Type="nvarchar(max)" Nullable="false" />
@@ -53,21 +53,20 @@
           <Property Name="nguoiThucHien" Type="nvarchar(max)" Nullable="false" />
           <Property Name="beRongCoc" Type="int" Nullable="false" />
           <Property Name="dienTichMuiCoc" Type="int" Nullable="false" />
-          <Property Name="khoiLuongRiengBeTong" Type="float" Nullable="false" />
           <Property Name="loaiDatNen" Type="int" Nullable="false" />
           <Property Name="khoangCachMatDatTuNhien" Type="float" Nullable="false" />
           <Property Name="chieuSauCocXuyen" Type="float" Nullable="false" />
           <Property Name="Nmui" Type="int" Nullable="false" />
-          <Property Name="khoangCachGiuaTimHaiCoc" Type="float" Nullable="false" />
-          <Property Name="heSoNhomCocCat" Type="float" Nullable="false" />
-          <Property Name="heSoNhomCocSet" Type="float" Nullable="false" />
+          <Property Name="caoDoMatDat" Type="float" Nullable="false" />
+          <Property Name="mucNuocNgam" Type="float" Nullable="false" />
+          <Property Name="chieuDaiCoc" Type="float" Nullable="false" />
         </EntityType>
         <Association Name="FK_DuLieu_SoLieuBanDau">
           <End Role="SoLieuBanDau" Type="Self.SoLieuBanDau" Multiplicity="0..1" />
           <End Role="DuLieu" Type="Self.DuLieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SoLieuBanDau">
-              <PropertyRef Name="tenKetCau" />
+              <PropertyRef Name="tenHoKhoan" />
             </Principal>
             <Dependent Role="DuLieu">
               <PropertyRef Name="tenHoKhoan" />
@@ -87,35 +86,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="PileCalcPlusModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PileCalcPlusEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="SoLieuBanDaus" EntityType="PileCalcPlusModel.SoLieuBanDau" />
           <EntitySet Name="DuLieux" EntityType="PileCalcPlusModel.DuLieu" />
+          <EntitySet Name="SoLieuBanDaus" EntityType="PileCalcPlusModel.SoLieuBanDau" />
           <AssociationSet Name="FK_DuLieu_SoLieuBanDau" Association="PileCalcPlusModel.FK_DuLieu_SoLieuBanDau">
             <End Role="SoLieuBanDau" EntitySet="SoLieuBanDaus" />
             <End Role="DuLieu" EntitySet="DuLieux" />
           </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="SoLieuBanDau">
-          <Key>
-            <PropertyRef Name="tenKetCau" />
-          </Key>
-          <Property Name="tenKetCau" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="tenHangMuc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tenDuAn" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CNDA" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="nguoiKiemTra" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="nguoiThucHien" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="beRongCoc" Type="Int32" Nullable="false" />
-          <Property Name="dienTichMuiCoc" Type="Int32" Nullable="false" />
-          <Property Name="khoiLuongRiengBeTong" Type="Double" Nullable="false" />
-          <Property Name="loaiDatNen" Type="Int32" Nullable="false" />
-          <Property Name="khoangCachMatDatTuNhien" Type="Double" Nullable="false" />
-          <Property Name="chieuSauCocXuyen" Type="Double" Nullable="false" />
-          <Property Name="Nmui" Type="Int32" Nullable="false" />
-          <Property Name="khoangCachGiuaTimHaiCoc" Type="Double" Nullable="false" />
-          <Property Name="heSoNhomCocCat" Type="Double" Nullable="false" />
-          <Property Name="heSoNhomCocSet" Type="Double" Nullable="false" />
-          <NavigationProperty Name="DuLieux" Relationship="PileCalcPlusModel.FK_DuLieu_SoLieuBanDau" FromRole="SoLieuBanDau" ToRole="DuLieu" />
-        </EntityType>
+          </EntityContainer>
         <EntityType Name="DuLieu">
           <Key>
             <PropertyRef Name="soThuTu" />
@@ -152,47 +129,46 @@
           <Property Name="tenHoKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="temp_Sumov" Type="Double" />
           <NavigationProperty Name="SoLieuBanDau" Relationship="PileCalcPlusModel.FK_DuLieu_SoLieuBanDau" FromRole="DuLieu" ToRole="SoLieuBanDau" />
+          </EntityType>
+        <EntityType Name="SoLieuBanDau">
+          <Key>
+            <PropertyRef Name="tenHoKhoan" />
+          </Key>
+          <Property Name="tenHoKhoan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tenHangMuc" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tenDuAn" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CNDA" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nguoiKiemTra" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="nguoiThucHien" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="beRongCoc" Type="Int32" Nullable="false" />
+          <Property Name="dienTichMuiCoc" Type="Int32" Nullable="false" />
+          <Property Name="loaiDatNen" Type="Int32" Nullable="false" />
+          <Property Name="khoangCachMatDatTuNhien" Type="Double" Nullable="false" />
+          <Property Name="chieuSauCocXuyen" Type="Double" Nullable="false" />
+          <Property Name="Nmui" Type="Int32" Nullable="false" />
+          <Property Name="caoDoMatDat" Type="Double" Nullable="false" />
+          <Property Name="mucNuocNgam" Type="Double" Nullable="false" />
+          <NavigationProperty Name="DuLieux" Relationship="PileCalcPlusModel.FK_DuLieu_SoLieuBanDau" FromRole="SoLieuBanDau" ToRole="DuLieu" />
+          <Property Name="chieuDaiCoc" Type="Double" Nullable="false" />
         </EntityType>
         <Association Name="FK_DuLieu_SoLieuBanDau">
           <End Type="PileCalcPlusModel.SoLieuBanDau" Role="SoLieuBanDau" Multiplicity="0..1" />
           <End Type="PileCalcPlusModel.DuLieu" Role="DuLieu" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SoLieuBanDau">
-              <PropertyRef Name="tenKetCau" />
+              <PropertyRef Name="tenHoKhoan" />
             </Principal>
             <Dependent Role="DuLieu">
               <PropertyRef Name="tenHoKhoan" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PileCalcPlusModelStoreContainer" CdmEntityContainer="PileCalcPlusEntities">
-          <EntitySetMapping Name="SoLieuBanDaus">
-            <EntityTypeMapping TypeName="PileCalcPlusModel.SoLieuBanDau">
-              <MappingFragment StoreEntitySet="SoLieuBanDau">
-                <ScalarProperty Name="heSoNhomCocSet" ColumnName="heSoNhomCocSet" />
-                <ScalarProperty Name="heSoNhomCocCat" ColumnName="heSoNhomCocCat" />
-                <ScalarProperty Name="khoangCachGiuaTimHaiCoc" ColumnName="khoangCachGiuaTimHaiCoc" />
-                <ScalarProperty Name="Nmui" ColumnName="Nmui" />
-                <ScalarProperty Name="chieuSauCocXuyen" ColumnName="chieuSauCocXuyen" />
-                <ScalarProperty Name="khoangCachMatDatTuNhien" ColumnName="khoangCachMatDatTuNhien" />
-                <ScalarProperty Name="loaiDatNen" ColumnName="loaiDatNen" />
-                <ScalarProperty Name="khoiLuongRiengBeTong" ColumnName="khoiLuongRiengBeTong" />
-                <ScalarProperty Name="dienTichMuiCoc" ColumnName="dienTichMuiCoc" />
-                <ScalarProperty Name="beRongCoc" ColumnName="beRongCoc" />
-                <ScalarProperty Name="nguoiThucHien" ColumnName="nguoiThucHien" />
-                <ScalarProperty Name="nguoiKiemTra" ColumnName="nguoiKiemTra" />
-                <ScalarProperty Name="CNDA" ColumnName="CNDA" />
-                <ScalarProperty Name="tenDuAn" ColumnName="tenDuAn" />
-                <ScalarProperty Name="tenHangMuc" ColumnName="tenHangMuc" />
-                <ScalarProperty Name="tenKetCau" ColumnName="tenKetCau" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DuLieux">
             <EntityTypeMapping TypeName="PileCalcPlusModel.DuLieu">
               <MappingFragment StoreEntitySet="DuLieu">
@@ -227,6 +203,27 @@
                 <ScalarProperty Name="caoDo" ColumnName="caoDo" />
                 <ScalarProperty Name="tenLopDat" ColumnName="tenLopDat" />
                 <ScalarProperty Name="soThuTu" ColumnName="soThuTu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SoLieuBanDaus">
+            <EntityTypeMapping TypeName="PileCalcPlusModel.SoLieuBanDau">
+              <MappingFragment StoreEntitySet="SoLieuBanDau">
+                <ScalarProperty Name="chieuDaiCoc" ColumnName="chieuDaiCoc" />
+                <ScalarProperty Name="mucNuocNgam" ColumnName="mucNuocNgam" />
+                <ScalarProperty Name="caoDoMatDat" ColumnName="caoDoMatDat" />
+                <ScalarProperty Name="Nmui" ColumnName="Nmui" />
+                <ScalarProperty Name="chieuSauCocXuyen" ColumnName="chieuSauCocXuyen" />
+                <ScalarProperty Name="khoangCachMatDatTuNhien" ColumnName="khoangCachMatDatTuNhien" />
+                <ScalarProperty Name="loaiDatNen" ColumnName="loaiDatNen" />
+                <ScalarProperty Name="dienTichMuiCoc" ColumnName="dienTichMuiCoc" />
+                <ScalarProperty Name="beRongCoc" ColumnName="beRongCoc" />
+                <ScalarProperty Name="nguoiThucHien" ColumnName="nguoiThucHien" />
+                <ScalarProperty Name="nguoiKiemTra" ColumnName="nguoiKiemTra" />
+                <ScalarProperty Name="CNDA" ColumnName="CNDA" />
+                <ScalarProperty Name="tenDuAn" ColumnName="tenDuAn" />
+                <ScalarProperty Name="tenHangMuc" ColumnName="tenHangMuc" />
+                <ScalarProperty Name="tenHoKhoan" ColumnName="tenHoKhoan" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -65,27 +65,23 @@ namespace PileCalc.ViewModel
         private string _BeRongCoc;
         public string BeRongCoc { get => _BeRongCoc; set { _BeRongCoc = value; OnPropertyChanged(); } }
 
-        private string _KhoiLuongRiengBeTong;
-        public string KhoiLuongRiengBeTong { get => _KhoiLuongRiengBeTong; set { _KhoiLuongRiengBeTong = value; OnPropertyChanged(); } }
-
         private string _ChieuSauCocXuyen;
         public string ChieuSauCocXuyen { get => _ChieuSauCocXuyen; set { _ChieuSauCocXuyen = value; OnPropertyChanged(); } }
 
         private string _KhoangCachMatDatTuNhien;
         public string KhoangCachMatDatTuNhien { get => _KhoangCachMatDatTuNhien; set { _KhoangCachMatDatTuNhien = value; OnPropertyChanged(); } }
 
-        private string _KhoangCachTimHaiCoc;
-        public string KhoangCachTimHaiCoc { get => _KhoangCachTimHaiCoc; set { _KhoangCachTimHaiCoc = value; OnPropertyChanged(); } }
-
-        private string _HeSoNhomCocCat;
-        public string HeSoNhomCocCat { get => _HeSoNhomCocCat; set { _HeSoNhomCocCat = value; OnPropertyChanged(); } }
-
-        private string _HeSoNhomCocSet;
-        public string HeSoNhomCocSet { get => _HeSoNhomCocSet; set { _HeSoNhomCocSet = value; OnPropertyChanged(); } }
-
         private string _Nmui;
         public string Nmui { get => _Nmui; set { _Nmui = value; OnPropertyChanged(); } }
 
+        private string _CaoDoMatDat;
+        public string CaoDoMatDat { get => _CaoDoMatDat; set { _CaoDoMatDat = value; OnPropertyChanged(); } }
+
+        private string _MucNuocNgam;
+        public string MucNuocNgam { get => _MucNuocNgam; set { _MucNuocNgam = value; OnPropertyChanged(); } }
+
+        private string _ChieuDaiCoc;
+        public string ChieuDaiCoc { get => _ChieuDaiCoc; set { _ChieuDaiCoc = value; OnPropertyChanged(); } }
         public SoLieuBanDauViewModel()
         {
             SaveCommand = new RelayCommand<object>((p) => {
@@ -98,11 +94,9 @@ namespace PileCalc.ViewModel
                 string.IsNullOrEmpty(Nmui) || 
                 string.IsNullOrEmpty(BeRongCoc) ||
                 string.IsNullOrEmpty(KhoangCachMatDatTuNhien) ||
-                string.IsNullOrEmpty(KhoangCachTimHaiCoc) ||
-                string.IsNullOrEmpty(KhoiLuongRiengBeTong) ||
-                string.IsNullOrEmpty(HeSoNhomCocCat) ||
-                string.IsNullOrEmpty(HeSoNhomCocSet)
-                )
+                string.IsNullOrEmpty(CaoDoMatDat) ||
+                string.IsNullOrEmpty(MucNuocNgam) ||
+                string.IsNullOrEmpty(ChieuDaiCoc))
                 {
                     return false;
                 }
@@ -119,9 +113,9 @@ namespace PileCalc.ViewModel
                 {
                     MessageBox.Show("Khoảng cách mặt đất tự nhiên không hợp lệ, vui lòng kiểm tra lại");
                 }
-                else if(!IsNumber(KhoiLuongRiengBeTong))
+                else if(!IsNumber(CaoDoMatDat))
                 {
-                    MessageBox.Show("Khối lượng riêng bê tông không hợp lệ, vui lòng kiểm tra lại!");
+                    MessageBox.Show("Cao độ mặt đất không hợp lệ, vui lòng kiểm tra lại!");
                 }
                 else if(!IsNumber(ChieuSauCocXuyen))
                 {
@@ -131,20 +125,20 @@ namespace PileCalc.ViewModel
                 {
                     MessageBox.Show("N mũi không hợp lệ, vui lòng kiểm tra lại!");
                 }
-                else if(!IsNumber(HeSoNhomCocCat))
+                else if(!IsNumber(MucNuocNgam))
                 {
-                    MessageBox.Show("Hệ số nhóm cọc đẩt cát không hợp lệ, vui lòng kiểm tra lại!");
+                    MessageBox.Show("Mực nước ngầm không hợp lệ, vui lòng kiểm tra lại!");
                 }
-                else if (!IsNumber(HeSoNhomCocSet))
+                else if (!IsNumber(ChieuDaiCoc))
                 {
-                    MessageBox.Show("Hệ số nhóm cọc đẩt sét không hợp lệ, vui lòng kiểm tra lại!");
+                    MessageBox.Show("Chiều dài cọc không hợp lệ, vui lòng kiểm tra lại!");
                 }
                 #endregion
                 else
                 {
                     DataProvider.Ins.DB.SoLieuBanDaus.Add(new SoLieuBanDau 
                     {
-                        tenKetCau = TenKetCau,
+                        tenHoKhoan = TenKetCau,
                         tenHangMuc = TenHangMuc,
                         tenDuAn = TenDuAn,
                         CNDA = CNDA,
@@ -152,12 +146,13 @@ namespace PileCalc.ViewModel
                         nguoiKiemTra = NguoiKiemTra,
                         beRongCoc = int.Parse(BeRongCoc),
                         loaiDatNen = loaiDatNenValue,
+                        caoDoMatDat = float.Parse(CaoDoMatDat),
                         khoangCachMatDatTuNhien = float.Parse(KhoangCachMatDatTuNhien),
-                        khoiLuongRiengBeTong = float.Parse(KhoiLuongRiengBeTong),
+                        mucNuocNgam = float.Parse(MucNuocNgam),
                         chieuSauCocXuyen = float.Parse(ChieuSauCocXuyen),
                         Nmui = int.Parse(Nmui),
-                        heSoNhomCocCat = float.Parse(HeSoNhomCocCat),
-                        heSoNhomCocSet = float.Parse(HeSoNhomCocSet)
+                        chieuDaiCoc = float.Parse(ChieuDaiCoc)
+                       
                     });
                     DataProvider.Ins.DB.SaveChanges();
                     MessageBox.Show("Thêm số liệu thành công!");
@@ -183,12 +178,11 @@ namespace PileCalc.ViewModel
             NguoiThucHien = "";
             BeRongCoc = "";
             KhoangCachMatDatTuNhien = "";
-            KhoiLuongRiengBeTong = "";
-            KhoangCachTimHaiCoc = "";
-            HeSoNhomCocCat = "";
-            HeSoNhomCocSet = "";
             ChieuSauCocXuyen = "";
             Nmui = "";
+            CaoDoMatDat = "";
+            MucNuocNgam = "";
+            ChieuDaiCoc = "";
         }
         public bool IsNumber(string pText)
         {

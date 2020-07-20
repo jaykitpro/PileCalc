@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9a69b0ede2fc443795e4fc9bda7a87cb" Name="Diagram1">
-        <EntityTypeShape EntityType="PileCalcPlusModel.SoLieuBanDau" Width="1.5" PointX="0.75" PointY="3" />
         <EntityTypeShape EntityType="PileCalcPlusModel.DuLieu" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="PileCalcPlusModel.SoLieuBanDau" Width="1.5" PointX="0.75" PointY="3.125" />
         <AssociationConnector Association="PileCalcPlusModel.FK_DuLieu_SoLieuBanDau" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
